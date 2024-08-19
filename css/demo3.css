@@ -1,0 +1,193 @@
+/* Main CSS Variables */
+.demo-3 {
+    --color-text: #aaa;
+    --color-bg: #000;
+    --color-link: #1c1cc9;
+    --color-link-hover: #aaa;
+    --color-info: #1c1cc9;
+    --glitch-width: 100vw;
+    --glitch-height: 100vh;
+    --gap-horizontal: 10px;
+    --gap-vertical: 5px;
+    --color-title: #fff;
+    --time-anim: 3s;
+    --delay-anim: 1s;
+    --blend-mode-1: none;
+    --blend-mode-2: none;
+    --blend-mode-3: none;
+    --blend-mode-4: overlay;
+    --blend-mode-5: overlay;
+    --blend-color-1: transparent;
+    --blend-color-2: transparent;
+    --blend-color-3: transparent;
+    --blend-color-4: #fb909a;
+    --blend-color-5: #1c1cc9;
+}
+
+/* Glitch Effect CSS */
+.glitch {
+    position: relative;
+    width: var(--glitch-width);
+    height: var(--glitch-height);
+    overflow: hidden;
+}
+
+.glitch__img {
+    position: absolute;
+    top: calc(-1 * var(--gap-vertical));
+    left: calc(-1 * var(--gap-horizontal));
+    width: calc(100% + var(--gap-horizontal) * 2);
+    height: calc(100% + var(--gap-vertical) * 2);
+    background-size: cover;
+    transform: translate3d(0, 0, 0);
+    background-blend-mode: var(--blend-mode-1);
+}
+
+/* Flexbox layout for grid */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.grid__item {
+    position: relative;
+    flex: 1 1 30%;
+    min-width: 250px;
+}
+
+.grid__item-title {
+    font-size: 1.2rem;
+    color: var(--color-title);
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Intro section */
+.intro h2 {
+    font-size: 2.5rem;
+    margin: 20vh 0 1rem 0;
+    font-family: 'Bungee', cursive;
+    color: var(--color-title);
+}
+
+.intro p {
+    font-size: 1.2rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Additional styling for smooth layout */
+body {
+    font-family: 'Barlow', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+a.demo {
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--color-link);
+    transition: color 0.3s ease;
+}
+
+a.demo:hover {
+    color: var(--color-link-hover);
+}
+
+/* Glitch Styles */
+.glitch {
+    position: relative;
+    width: var(--glitch-width);
+    max-width: 400px;
+    height: var(--glitch-height);
+    max-height: calc(400px * 1.25);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.glitch:hover {
+    cursor: pointer;
+}
+
+.glitch__img {
+    background: url(../img/1.jpg) no-repeat 50% 0;
+}
+
+.glitch--style-2 .glitch__img {
+    background-image: url(../img/2.jpg);
+}
+
+.glitch--style-3 .glitch__img {
+    background-image: url(../img/3.jpg);
+}
+
+/* Hover Effects */
+.glitch:hover .glitch__img:nth-child(n+2) {
+    opacity: 1;
+}
+
+/* Hover animations */
+.grid__item:hover .glitch__img:nth-child(2) {
+    transform: translate3d(var(--gap-horizontal), 0, 0);
+    animation: glitch-anim-1-horizontal var(--time-anim) infinite linear alternate;
+}
+
+.grid__item:hover .glitch__img:nth-child(3) {
+    transform: translate3d(calc(-1 * var(--gap-horizontal)), 0, 0);
+    animation: glitch-anim-2-horizontal var(--time-anim) infinite linear alternate;
+}
+
+.grid__item:hover .glitch__img:nth-child(4) {
+    transform: translate3d(0, calc(-1 * var(--gap-vertical)), 0) scale3d(-1, -1, 1);
+    animation: glitch-anim-3-horizontal var(--time-anim) infinite linear alternate;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 55em) {
+    .grid {
+        flex-direction: column;
+        margin-top: 3em;
+    }
+
+    .grid__item {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin: 0 0 3em;
+    }
+
+    .grid__item-title,
+    .grid__item:nth-child(odd) .grid__item-title {
+        font-size: 2em;
+        text-align: center;
+        width: 100%;
+        padding: 0;
+        top: 20%;
+    }
+}
+
+/* Existing Hover animations */
+.grid__item:hover .glitch__img:nth-child(2) {
+    transform: translate3d(var(--gap-horizontal), 0, 0);
+    animation: glitch-anim-1-horizontal var(--time-anim) infinite linear alternate;
+}
+
+.grid__item:hover .glitch__img:nth-child(3) {
+    transform: translate3d(calc(-1 * var(--gap-horizontal)), 0, 0);
+    animation: glitch-anim-2-horizontal var(--time-anim) infinite linear alternate;
+}
+
+.grid__item:hover .glitch__img:nth-child(4) {
+    transform: translate3d(0, calc(-1 * var(--gap-vertical)), 0) scale3d(-1, -1, 1);
+    animation: glitch-anim-3-horizontal var(--time-anim) infinite linear alternate;
+}
+
+/* New: Zoom and Shadow Hover Effect */
+.grid__item:hover .glitch__img {
+    transform: scale(1.05); /* Slight zoom */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
